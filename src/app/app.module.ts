@@ -3,8 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component';
+import { MyDataService } from './my-data.service';
 import { NewComponentComponent } from './new-component/new-component.component';
 import { SortPipe } from './app.sortPipe';
 @NgModule({
@@ -17,6 +20,8 @@ import { SortPipe } from './app.sortPipe';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
     	{
     		path:'new',
@@ -24,7 +29,7 @@ import { SortPipe } from './app.sortPipe';
     	}
     ])
   ],
-  providers: [],
+  providers: [MyDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

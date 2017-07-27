@@ -6,7 +6,6 @@
   <a routerLink="/new"> new component</a>
   <router-outlet></router-outlet>
 </div>
-
 <!-- binding data in .html and .ts(controller)-->
 <h2>binding examples:</h2>
 <h4>object:</h4>
@@ -88,7 +87,7 @@
 </form>
  -->
 <!-- Base converter -->
-<h2>Base converter using model driven form:</h2>
+<!-- <h2>Base converter using model driven form:</h2>
 <form class="container" [formGroup] = "form">
   <div class="form-group">
     <input type="text" name="decimal" placeholder="Decimal" formControlName="decimal"           (ngModelChange) = " decimalChanged( oldValue, newValue = $event) ">
@@ -105,9 +104,11 @@
     <input type="text" name="octal" placeholder="Octal" formControlName="octal"
     (ngModelChange) = " octalChanged( oldValue, newValue = $event) ">
   </div><br>
-</form>
-
-
+</form> -->
+<!-- animations -->
+<h2>Animations</h2>
+<button style="margin-left: 200px;" (click) = "animate()">Click me</button>
+<p style="margin-left: 200px;" [@myAnimation] = "state" > Look me </p>
 
 <h2>Here are some links to help you start: </h2>
 <ul>

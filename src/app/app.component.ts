@@ -1,12 +1,34 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { MyDataService } from './my-data.service';
+import { trigger, state, animate ,style, transition} from '@angular/animations'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+  trigger('myAnimation',[
+      state('smaller', style({
+        transform : 'scale(1)'
+      })),
+        state('larger', style({
+          transform : 'scale(3)'
+      })),
+      transition('smaller <=> larger', animate('300ms ease-in'))
+    ])
+  ]
 })
 export class AppComponent {
+  /*services*/
+  constructor(private newService : MyDataService){}
+    ngOnInit () {
+      // this.newService.obj.name = "Ansari"
+      // console.log(this.newService.obj.name);
+       this.newService.fetchData();
+    }
+
+  /* declarations*/
   title = 'app';
   obj = {
   id: '1',
@@ -47,14 +69,14 @@ export class AppComponent {
   }) 
   }*/
   
-  ngOnInit () {
-  this.form = new FormGroup({
-    decimal : new FormControl(""),
-    binary : new FormControl(""),
-    hexa : new FormControl(""),
-    octal : new FormControl("")
-  }) 
-  }
+  // ngOnInit () {
+  // this.form = new FormGroup({
+  //   decimal : new FormControl(""),
+  //   binary : new FormControl(""),
+  //   hexa : new FormControl(""),
+  //   octal : new FormControl("")
+  // }) 
+  // }
 
   decimalChanged = (oldValue, newValue) => {
     if(newValue != ""){
@@ -108,5 +130,10 @@ export class AppComponent {
       this.o = 0;      
     }
   }
+   state : string = 'smaller';
+
+   animate = () => {
+     this.state = this.state == 'larger' ? 'smaller' : 'larger'
+   }
 
 }
