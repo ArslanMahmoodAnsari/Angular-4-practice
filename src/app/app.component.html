@@ -1,0 +1,124 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <a routerLink="/new"> new component</a>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- binding data in .html and .ts(controller)-->
+<h2>binding examples:</h2>
+<h4>object:</h4>
+<p> name : {{obj.name}}</p>
+<h4>forEach loop:</h4>
+<ul>
+  <li *ngFor = " let i of items ">{{i}}</li>
+</ul>
+
+<!-- conditional Statements -->
+<h2>Conditional Statements:</h2>
+<p *ngIf=" check; then firstTemp else secondTemp"></p>
+<ng-template #firstTemp >condition is true</ng-template>
+<ng-template #secondTemp >condition is false</ng-template>
+
+<!-- creating a simple 2-way-binding using "ngModel" -->
+<h2>Every thing upto Now:</h2>
+<div class="main">
+  <h1 class="heading1"> Item's List</h1>
+  <div class="addItem">
+      <input [(ngModel)] = "newItem" placeholder="Add Item" class="addText">
+      <button (click)="pushItem()">Add</button>
+  </div>
+  <ul class="list">
+    <li *ngFor = " let i of items; let ind = index " class="listItem">
+       {{i}}
+       <span (click) = "removeItem(ind)">X</span>
+    </li>
+  </ul>
+</div>
+
+<!-- different pipes -->
+<h2>Pipes:</h2>
+<p>1:  {{obj.name | uppercase}}</p>
+<p>2:  {{day}}</p>
+<p>3:  {{day | date}}</p>
+<p>4:  {{day | date : 'shortDate'}}</p>
+<p>5:  {{day | date : 'fullDate' | uppercase}}</p>
+<p>6:  {{arr | sort:'descending'}}</p>
+
+<!-- A template driven Form -->
+<h2>Template Driven Forms:</h2>
+
+<form class="container" #userForm = "ngForm" (ngSubmit) = "onSubmit(userForm.value)" >
+  <div class="form-group">
+    <input type="text" name="firstName" placeholder="First Name" ngModel>
+  </div><br>
+  <div class="form-group">
+    <input type="text" name="lastName" placeholder="Last Name" ngModel>
+  </div><br>
+  <select name="language" ngModel>
+    <option value="C++">C++</option>
+    <option value="Java">Java</option>
+    <option value="Node">Node</option>
+  </select>
+  <input type="submit" value="submit">
+</form>
+
+<!-- A Model Driven Form And it's Validation-->
+<h2>Model Driven Forms And Validation:</h2>
+<p> To see model driven form unComment the (form) in "app.component.html" from line(74-88)</p>
+<p> And comment the "Base convertor code" in "app.component.html" from line(31-108)</p>
+<p> Also uncomment the "ngOnInit()" in "app.component.ts"  from line(38-44)</p>
+<p> and comment the second "ngOnInit()" in "app.component.ts" from line(46-56)</p>
+
+<!-- <form class="container" [formGroup] = "form" (ngSubmit) = "onSubmit(form.value)" >
+  <div class="form-group">
+    <input type="text" name="firstName" placeholder="First Name" formControlName="firstName">
+  </div><br>
+  <div class="form-group">
+    <input type="text" name="lastName" placeholder="Last Name" formControlName="lastName">
+  </div><br>
+  <select name="language" formControlName="language">
+    <option value="C++">C++</option>
+    <option value="Java">Java</option>
+    <option value="Node">Node</option>
+  </select>
+  <input type="submit"  [disabled] = "!form.valid" value="submit">
+</form>
+ -->
+<!-- Base converter -->
+<h2>Base converter using model driven form:</h2>
+<form class="container" [formGroup] = "form">
+  <div class="form-group">
+    <input type="text" name="decimal" placeholder="Decimal" formControlName="decimal"           (ngModelChange) = " decimalChanged( oldValue, newValue = $event) ">
+  </div><br>
+  <div class="form-group">
+    <input type="text" name="binary" placeholder="Binary" formControlName="binary" 
+    (ngModelChange) = " binaryChanged( oldValue, newValue = $event) ">
+  </div><br>
+    <div class="form-group">
+    <input type="text" name="hexa" placeholder="Hexa Decimal" formControlName="hexa"
+    (ngModelChange) = " hexaChanged( oldValue, newValue = $event)  ">
+  </div><br>
+    <div class="form-group">
+    <input type="text" name="octal" placeholder="Octal" formControlName="octal"
+    (ngModelChange) = " octalChanged( oldValue, newValue = $event) ">
+  </div><br>
+</form>
+
+
+
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" href="https://angular.io/tutorial" >Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
+  </li>
+</ul>
+
